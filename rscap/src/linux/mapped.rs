@@ -148,6 +148,8 @@ pub struct PacketTxRing {
     blocks: Vec<PacketTxBlock>,
 }
 
+unsafe impl Send for PacketTxRing {}
+
 impl PacketTxRing {
     /// Constructs a new `PacketTxRing` instance from a raw memory-mapped segment and configuration.
     pub(crate) unsafe fn new(ring_start: *mut u8, config: BlockConfig) -> Self {
@@ -444,6 +446,8 @@ pub struct PacketRxRing {
     block_size: usize,
     blocks: Vec<PacketRxBlock>,
 }
+
+unsafe impl Send for PacketRxRing {}
 
 impl PacketRxRing {
     /// Constructs a new `PacketRxRing` instance from a raw memory-mapped segment and configuration.
